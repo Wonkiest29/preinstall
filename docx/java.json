@@ -4,9 +4,4 @@
     "os": "Windows",
     "link": "https://download.bell-sw.com/java/8u372+7/bellsoft-jdk8u372+7-windows-amd64-full.msi"
   },
-  "win17": {
-    "name": "Java 17 Windows",
-    "os": "Windows",
-    "link": "https://download.bell-sw.com/java/17.0.7+7/bellsoft-jdk17.0.7+7-windows-amd64-full.msi"
-  }
 }
