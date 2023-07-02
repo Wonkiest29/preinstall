@@ -1,0 +1,1 @@
+CURRENT_VERSION = "b0.0.1"
