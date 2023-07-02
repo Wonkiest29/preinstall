@@ -1,50 +1,36 @@
 import tkinter as tk
-from PIL import Image, ImageTk
-import os
+from src.scenes.windows_scene import WindowsSetup
 
 class ZeroScene:
-    def __init__(self, window):
+    def __init__(self, window, scene_frame):
         self.window = window
-        self.logo_image_path = os.path.join(os.path.dirname(__file__), "..", "images", "windows10.png")
-        self.logo_image = None
-        self.logo_label = None
+        self.scene_frame = scene_frame
         self.start_button = None
+        self.button_frame = None
 
     def show(self):
-        # Load the logo image using PIL
-        self.logo_image = Image.open(self.logo_image_path)
+        # Create a label at the top
+        title_label = tk.Label(self.scene_frame, text="Java Installation Assistant", font=("Arial", 16))
+        title_label.pack(pady=20)
 
-        # Resize the logo image to a smaller size
-        smaller_logo_image = self.logo_image.resize((200, 50))  # Adjust the size as needed
+        # Create a frame to hold the button and text
+        self.button_frame = tk.Frame(self.scene_frame)
+        self.button_frame.pack()
 
-        # Create a Tkinter-compatible photo image from the smaller logo image
-        logo_photo = ImageTk.PhotoImage(smaller_logo_image)
+        # Create the start button
+        self.start_button = tk.Button(self.button_frame, text="Start", command=self.start)
+        self.start_button.pack(pady=10)
 
-        # Create a label to display the logo image
-        self.logo_label = tk.Label(self.window, image=logo_photo)
-        self.logo_label.image = logo_photo  # Store a reference to prevent image from being garbage collected
-        self.logo_label.grid(row=0, column=0, padx=10, pady=10, sticky="nw")  # Position at top-left corner
+        # Create the text label
+        text_label = tk.Label(self.button_frame, text="Click the 'Start' button to begin the installation process.")
+        text_label.pack(pady=10)
 
-        # Create the "Start" button
-        self.start_button = tk.Button(self.window, text="Start", command=self.start_setup)
-        self.start_button.grid(row=1, column=0, padx=10, pady=10, sticky="n")  # Position below the logo
+        self.window.geometry("300x250")
 
-        # Center the button horizontally
-        self.window.grid_columnconfigure(0, weight=1)
-
-    def start_setup(self):
-        # Your setup code here
-        pass
-
-# Create the main window
-window = tk.Tk()
-window.title("Java Installer")
-window.geometry("900x500")
-window.resizable(False, False)
-
-# Create and show the ZeroScene
-zero_scene = ZeroScene(window)
-zero_scene.show()
-
-# Start the Tkinter event loop
-window.mainloop()
+    def start(self):
+        # Destroy the button frame along with its widgets
+        self.button_frame.destroy()
+        # Disable the button while processing
+        self.window.update()  # Update the window to reflect the button text change
+        windows_scene = WindowsSetup(self.window, self.show)  # Pass self.show as the start_callback
+        windows_scene.show()
