@@ -30,7 +30,7 @@ class WindowsSetup:
 
         # Load the Java installation information from the remote JSON file
         try:
-            url = "https://raw.githubusercontent.com/Wonkiest29/preinstaller/main/docx/java.json"
+            url = "https://raw.githubusercontent.com/Wonkiest29/preinstaller/main/doc/java.json"
             response = requests.get(url)
             if response.status_code == 200:
                 self.java_info = response.json()
