@@ -1,6 +1,6 @@
 {
   "win8java": {
-    "name": "Java 8 Windows check",
+    "name": "Java 8 Windows",
     "os": "Windows",
     "link": "https://download.bell-sw.com/java/8u372+7/bellsoft-jdk8u372+7-windows-amd64-full.msi"
   },
